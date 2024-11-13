@@ -15,8 +15,6 @@ export const getPartidas = async (req, res) => {
 }
 
 
-
-
 export const addPartida = async (req, res) => {
     try {
 
@@ -36,10 +34,3 @@ export const addPartida = async (req, res) => {
     }
 }
 
-export const putPartida = async (req, res) => {
-    try {
-        const { id, estado } = req.body;
-    } catch (error) {
-        console.log(error)
-    }
-}
