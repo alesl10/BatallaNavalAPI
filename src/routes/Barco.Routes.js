@@ -1,12 +1,12 @@
 import { Router } from "express";  
-import { getBarcos } from "../controllers/Barco.Controllers.js"; 
+import { addBarco, getBarco, getBarcos, updateBarco } from "../controllers/Barco.Controllers.js"; 
 
 const router = Router();
 
 router.get('/barco', getBarcos)
+router.get('/barco/:id', getBarco)
 
-router.post('/barco', (req, res) =>{
-    res.json({message:'Hola mundo desde el creador de barcos'})
-})
+router.post('/barco', addBarco)
+router.put('/barco', updateBarco)
 
 export default router;
