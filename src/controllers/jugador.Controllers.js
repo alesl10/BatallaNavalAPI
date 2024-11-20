@@ -14,6 +14,37 @@ export const getJugadores = async (req, res) => {
     }
 }
 
+export const login = async (req, res) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).send({ message: "Faltan credenciales" });
+        }
+
+        const query = `
+            SELECT * FROM jugador WHERE jugador.email = ?;
+        `;
+        conexion.query(query, [email], async (error, results) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).send({ message: "Error interno al obtener los datos" });
+            }
+
+            if (results.length === 0) {
+                return res.status(404).send({ message: "Usuario no encontrado" });
+            }
+
+            const user = results[0];
+
+            res.status(200).send({ message: 'Inicio de sesión exitoso', data: user });
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Error interno en el servidor" });
+    }
+};
+
 export const addJugador = async (req, res) => {
     try {
         const { nombre, apellido, apodo, icono, email } = req.body
