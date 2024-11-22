@@ -1,13 +1,11 @@
 import { Router } from "express";
-import { getCoordenadas } from '../controllers/Coordenada.Controllers.js'
+import { getCoordenadas, addCoordenada } from '../controllers/Coordenada.Controllers.js'
 
 const router = Router();
 
 router.get('/coordenadas', getCoordenadas)
 
 
-router.post('/coordenadas', (req, res) => {
-    res.json({ message: 'Hola mundo desde el creador de coordenadas' })
-})
+router.post('/coordenadas', addCoordenada)
 
 export default router;

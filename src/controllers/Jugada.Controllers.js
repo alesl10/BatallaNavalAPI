@@ -18,10 +18,10 @@ export const getJugadas = async (req, res) => {
 export const addJugada = async (req, res) => {
     try {
 
-        const {  } = req.body;
-        const query = `INSERT INTO jugada ()
-    VALUES()`
-        conexion.query(query, [ ], function (error, results, fields) {
+        const {fila, columna, jugador_id,partida_id  } = req.body;
+        const query = `INSERT INTO jugada (fila, columna, jugador_id, partida_id)
+    VALUES(?,?,?,?)`
+        conexion.query(query, [fila, columna, jugador_id,partida_id ], function (error, results, fields) {
             if (error) {
                 res.status(500).json({ message: error })
             } else {
